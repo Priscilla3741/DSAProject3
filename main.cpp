@@ -37,7 +37,7 @@ int main() {
             getline(stream, ps,',');
             getline(stream, pb,',');
 
-            // fix float - throws problem when the number is negative
+            // fix float - throws problem when the number is negative and has to change to a float
 
             float price = stof(p);
             float pricePerEarnings = stof(pe);

@@ -3,4 +3,4 @@ project(DSAProject3)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DSAProject3 main.cpp CSV.cpp CSV.h)
+add_executable(DSAProject3 main.cpp Stock.cpp Stock.h)

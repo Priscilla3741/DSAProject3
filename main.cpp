@@ -8,44 +8,55 @@ using namespace std;
 // find the average for every year and then use that to use the regression point (number) for each stock and then use that to see if its good or not (neg or pos)
 
 int main() {
-    ifstream stockInfo("A.csv");
+    ifstream stockInfo("Stocks.csv");
 
     if (!stockInfo.is_open()) {
-        cout << "Error opening file A.csv" << endl;
+        cout << "Error opening file Stocks.csv" << endl;
     }
 
     if (stockInfo.is_open()) {
-        cout << "A" << endl;
         string fileData;
         getline(stockInfo, fileData);
         while (getline(stockInfo, fileData)) {
-            string d,o,h,l,c,a,v;
+            string symbol, name, sector, sec;
+            string p,pe,dy,es,wl,wh,mc,eb,ps,pb;
             istringstream stream (fileData);
 
-            getline(stream, d, ',');
-            getline(stream, o, ',');
-            getline(stream, h, ',');
-            getline(stream, l,',');
-            getline(stream, c,',');
-            getline(stream, a,',');
-            getline(stream, v,',');
+            getline(stream, symbol, ',');
+            getline(stream, name, ',');
+            getline(stream, sector, ',');
 
-            int Date = stoi(d);
-            float Open = stof(o);
-            float High = stof(h);
-            float Low = stof(l);
-            float Close = stof(c);
-            float AdjClose = stof(a);
-            float Volume = stof(v);
+            getline(stream, p, ',');
+            getline(stream, pe, ',');
+            getline(stream, dy,',');
+            getline(stream, es,',');
+            getline(stream, wl,',');
+            getline(stream, wh,',');
+            getline(stream, mc,',');
+            getline(stream, eb,',');
+            getline(stream, ps,',');
+            getline(stream, pb,',');
 
-            cout << "Date: " << Date << ", Open: " << Open << ", High: " << High
-                 << ", Low: " << Low << ", Close: " << Close << ", AdjClose: " << AdjClose
-                 << ", Volume: " << Volume << endl;
+            float price = stof(p);
+            float pricePerEarnings = stof(pe);
+            float dividendYield = stof(dy);
+            float earningsPerShare = stof(es);
+            float weekLow52 = stof(wl);
+            float weekHigh52 = stof(wh);
+            float marketCap = stof(mc);
+            float ebitda = stof(eb);
+            float pricePerSale = stof(ps);
+            float pricePerBook = stof(pb);
+
+            getline(stream, sec, ',');
+
+            cout << "Symbol: " << symbol << ", Name: " << name << ", Sector: " << sector << ", Price: " << price << ", Price/Earnings: " << pricePerEarnings << ", Dividend Yield: " << dividendYield
+                << ", Earnings/Share: " << earningsPerShare << ", 52 Week Low: " << weekLow52 << ", 52 Week High: " << weekHigh52
+                << ", Market Cap: " << marketCap << ", EBITDA: " << ebitda << ", Price/Sale: " << pricePerSale << ", Price/Book: " << pricePerBook << endl;
             cout << endl;
-
-            //yourMom[stateName] = StateData(perCapitaIncome, population, medianHouseInc, numofHouseholds);
         }
-        }
-    return 0;
     }
+
+    return 0;
+}
 

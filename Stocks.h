@@ -1,7 +1,3 @@
-//
-// Created by sumye on 11/27/2023.
-//
-
 #ifndef DSAPROJECT3_STOCKS_H
 #define DSAPROJECT3_STOCKS_H
 #include <iostream>
@@ -34,7 +30,7 @@ struct Stock {
 
 class Stocks {
 public:
-    unordered_map<string, vector<Stock>> insertStocks();
+    void insertStocks(unordered_map<string, vector<Stock>> &stockMap);
 };
 
 

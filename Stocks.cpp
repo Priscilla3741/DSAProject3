@@ -1,17 +1,12 @@
-//
-// Created by sumye on 11/27/2023.
-//
-
 #include "Stocks.h"
 
-unordered_map<string, vector<Stock>>  Stocks::insertStocks() {
+void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
 
     if (!stockInfo.is_open()) {
         cout << "Error opening file Stocks.csv" << endl;
     }
 
-    unordered_map<string, vector<Stock>> stockMap;
 
     if (stockInfo.is_open()) { // ensure file is open
         string fileData;
@@ -58,6 +53,5 @@ unordered_map<string, vector<Stock>>  Stocks::insertStocks() {
             stockMap[sector].push_back(stock);
         }
     }
-    return stockMap;
-}
 
+}

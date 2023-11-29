@@ -7,7 +7,6 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
         cout << "Error opening file Stocks.csv" << endl;
     }
 
-
     if (stockInfo.is_open()) { // ensure file is open
         string fileData;
         getline(stockInfo, fileData);

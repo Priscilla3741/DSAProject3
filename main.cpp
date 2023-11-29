@@ -6,11 +6,10 @@ using namespace std;
 
 int main() {
     unordered_map<string, vector<Stock>> stockMap;
-
     Stocks stock;
     stock.insertStocks(stockMap);
 
-    float desiredSector;
+    string desiredSector;
     cout << "Sectors: " << endl;
     cout << " - Consumer Discretionary" << endl;
     cout << " - Consumer Staples" << endl;
@@ -28,6 +27,26 @@ int main() {
     cin >> desiredSector;
 
     // get the stocks in the sector
+    if (desiredSector == "Consumer Discretionary" || desiredSector == "Consumer Staples" ||
+        desiredSector == "Energy" || desiredSector == "Financials" ||
+        desiredSector == "Health Care" || desiredSector == "Industrials" ||
+        desiredSector == "Information Technology" || desiredSector == "Materials" ||
+        desiredSector == "Real Estate" || desiredSector == "Telecommunication Services" ||
+        desiredSector == "Utilities") {
+        cout << "Sector selected: " << desiredSector << endl;
+    } else {
+        cout << "Invalid sector entered. Please choose a valid sector: " << endl;
+        cin >> desiredSector;
+    }
+
+    for (const auto& input : stockMap) {
+        const string& sectorName = input.first;
+        const vector<Stock>& sectorStocks = input.second;
+
+        for (const Stock& stock : sectorStocks) {  // analyze stock in desired sector
+
+        }
+    }
 
     int choice;
     cout << "Enter the number for the category you want to search: ";

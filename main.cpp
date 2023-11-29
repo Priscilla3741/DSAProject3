@@ -2,7 +2,8 @@
 #include "Stocks.h"
 using namespace std;
 
-// using quick sort and topological sort.
+// using quick sort - the pivot is the max and once sorted print everything under the max
+// using heap sort - build min heap and pop out minimum values until it gets to the max
 
 int main() {
     unordered_map<string, vector<Stock>> stockMap;
@@ -39,19 +40,16 @@ int main() {
         cin >> desiredSector;
     }
 
-    for (const auto& input : stockMap) {
-        const string& sectorName = input.first;
-        const vector<Stock>& sectorStocks = input.second;
-
-        for (const Stock& stock : sectorStocks) {  // analyze stock in desired sector
-
-        }
-    }
-
     int choice;
+    string algorithmChoice;
     cout << "Enter the number for the category you want to search: ";
     cout << "1. Price" << endl;
     cin >> choice;
+    cout << "What algorithm do you want to use?" << endl;
+    cout << " - Quick Sort" << endl;
+    cout << " - Heap Sort" << endl;
+    cin >> algorithmChoice;
+    // sort the industry's sector with that algorithm
 
     switch (choice) {
         case 1:

@@ -52,5 +52,4 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
             stockMap[sector].push_back(stock);
         }
     }
-
 }

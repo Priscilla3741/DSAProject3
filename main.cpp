@@ -15,8 +15,10 @@ int main() {
     stocks.readCSV("Stocks.csv");
 
         cout << "Sector: ";
-
         cin >> sector;
+
+        cout << "price: ";
+        cin >> price;
 
 
 

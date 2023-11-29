@@ -78,11 +78,12 @@ int main() {
             stockMap[sector].push_back(stock);
         }
 
-//        // iterate through map
+//         iterate through map
 //        for (const auto& inputs : stockMap) {
 //            const string& secName = inputs.first;
 //            const vector<Stock>& sectorStocks = inputs.second;
 //        }
+
     }
 
     return 0;

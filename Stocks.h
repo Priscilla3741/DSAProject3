@@ -5,10 +5,11 @@
 #ifndef DSAPROJECT3_STOCKS_H
 #define DSAPROJECT3_STOCKS_H
 #include <iostream>
-#include <unordered_map>
-#include <unordered_set>
+#include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
+#include <unordered_map>
 using namespace std;
 
 struct Stock {
@@ -31,14 +32,9 @@ struct Stock {
               weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
 };
 
-
-
 class Stocks {
-    void insertStocks();
-
-    void readCSV(string file);
-
-
+public:
+    unordered_map<string, vector<Stock>> insertStocks();
 };
 
 

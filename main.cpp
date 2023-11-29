@@ -78,7 +78,7 @@ int main() {
 
         cin >> desiredSector;
 
-        // get funcy with it
+        // get funcy with it:
 
         // get the stocks in the sector
 

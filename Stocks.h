@@ -31,7 +31,13 @@ struct Stock {
               weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
 };
 
+
+
 class Stocks {
+    void insertStocks();
+
+    void readCSV(string file);
+
 
 };
 

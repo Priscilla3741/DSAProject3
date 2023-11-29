@@ -3,3 +3,12 @@
 //
 
 #include "Stocks.h"
+
+void Stocks::insertStocks() {
+
+
+}
+
+void Stocks::readCSV(string file) {
+
+}

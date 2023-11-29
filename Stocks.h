@@ -37,12 +37,7 @@ struct Stock {
 
 class Stocks {
 public:
-    bool readCSV(string file);
-
-
-    void insertStocks();
-
-
+    unordered_map<string, vector<Stocks>> insertStocks(string file)
 
 };
 

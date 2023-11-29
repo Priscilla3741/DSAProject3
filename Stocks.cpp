@@ -7,12 +7,8 @@
 #include <fstream>
 #include <sstream>
 
-void Stocks::insertStocks() {
 
-
-}
-
-bool Stocks::readCSV(string file) {
+unordered_map<string, vector<Stocks>> Stocks::insertStocks(string file) {
 
     unordered_map<string, vector<Stock>> stockMap;
 

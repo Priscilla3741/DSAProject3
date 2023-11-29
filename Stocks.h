@@ -26,6 +26,8 @@ struct Stock {
     float pricePerSale;
     float pricePerBook;
 
+
+
     Stock(const string& sym, const string& n, const string& sec, float p, float pe, float dy, float es, float wl, float wh, float mc, float eb, float ps, float pb)
             : symbol(sym), name(n), sector(sec), price(p), pricePerEarnings(pe), dividendYield(dy), earningsPerShare(es),
               weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
@@ -34,9 +36,12 @@ struct Stock {
 
 
 class Stocks {
+public:
+    bool readCSV(string file);
+
+
     void insertStocks();
 
-    void readCSV(string file);
 
 
 };

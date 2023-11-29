@@ -7,26 +7,6 @@
 #include "Stocks.h"
 using namespace std;
 
-struct Stock {
-    string symbol;
-    string name;
-    string sector;
-    float price;
-    float pricePerEarnings;
-    float dividendYield;
-    float earningsPerShare;
-    float weekLow52;
-    float weekHigh52;
-    float marketCap;
-    float ebitda;
-    float pricePerSale;
-    float pricePerBook;
-
-    Stock(const string& sym, const string& n, const string& sec, float p, float pe, float dy, float es, float wl, float wh, float mc, float eb, float ps, float pb)
-            : symbol(sym), name(n), sector(sec), price(p), pricePerEarnings(pe), dividendYield(dy), earningsPerShare(es),
-              weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
-};
-
 int main() {
     ifstream stockInfo("Stocks.csv");
 
@@ -36,11 +16,11 @@ int main() {
 
     unordered_map<string, vector<Stock>> stockMap;
 
-    if (stockInfo.is_open()) {
+    if (stockInfo.is_open()) { // ensure file is open
         string fileData;
         getline(stockInfo, fileData);
 
-        while (getline(stockInfo, fileData)) {
+        while (getline(stockInfo, fileData)) { // go through file
             string symbol, name, sector, sec;
             string p,pe,dy,es,wl,wh,mc,eb,ps,pb;
             istringstream stream (fileData);
@@ -73,16 +53,47 @@ int main() {
 
             getline(stream, sec, ',');
 
-            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare, weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
+            // insert stock into object
+            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
+                        weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
 
+            // push the stock into its sector group
             stockMap[sector].push_back(stock);
         }
 
-//         iterate through map
-//        for (const auto& inputs : stockMap) {
-//            const string& secName = inputs.first;
-//            const vector<Stock>& sectorStocks = inputs.second;
-//        }
+        float desiredSector;
+        cout << "Sectors: " << endl;
+        cout << " - Consumer Discretionary" << endl;
+        cout << " - Consumer Staples" << endl;
+        cout << " - Energy" << endl;
+        cout << " - Financials" << endl;
+        cout << " - Health Care" << endl;
+        cout << " - Industrials" << endl;
+        cout << " - Information Technology" << endl;
+        cout << " - Materials" << endl;
+        cout << " - Real Estate" << endl;
+        cout << " - Telecommunication Services" << endl;
+        cout << " - Utilities" << endl;
+        cout << "Enter the Sector you want to invest in: ";
+
+        cin >> desiredSector;
+
+        // get the stocks in the sector
+
+        int choice;
+        cout << "Enter the number for the category you want to search: ";
+        cout << "1. Price" << endl;
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                int maxPrice;
+                cout << "What is the maximum amount you want to invest in?" << endl;
+                cin >> maxPrice;
+                // with the max price find all the stocks that match are fall under the max price
+        }
+
+
 
     }
 

@@ -10,6 +10,8 @@ using namespace std;
 int main() {
     ifstream stockInfo("Stocks.csv");
 
+    //--
+
     if (!stockInfo.is_open()) {
         cout << "Error opening file Stocks.csv" << endl;
     }

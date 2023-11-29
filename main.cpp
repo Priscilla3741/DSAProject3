@@ -2,7 +2,7 @@
 #include "Stocks.h"
 using namespace std;
 
-// using quick sort and topological sort
+// using quick sort and topological sort.
 
 int main() {
     Stocks stock;

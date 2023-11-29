@@ -1,7 +1,3 @@
-//
-// Created by sumye on 11/27/2023.
-//
-
 #ifndef DSAPROJECT3_STOCKS_H
 #define DSAPROJECT3_STOCKS_H
 #include <iostream>

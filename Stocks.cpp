@@ -1,7 +1,3 @@
-//
-// Created by sumye on 11/27/2023.
-//
-
 #include "Stocks.h"
 
 unordered_map<string, vector<Stock>>  Stocks::insertStocks() {

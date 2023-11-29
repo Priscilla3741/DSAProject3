@@ -10,8 +10,6 @@ using namespace std;
 int main() {
     ifstream stockInfo("Stocks.csv");
 
-    //--
-
     if (!stockInfo.is_open()) {
         cout << "Error opening file Stocks.csv" << endl;
     }
@@ -79,6 +77,8 @@ int main() {
         cout << "Enter the Sector you want to invest in: ";
 
         cin >> desiredSector;
+
+        // get funcy with it
 
         // get the stocks in the sector
 

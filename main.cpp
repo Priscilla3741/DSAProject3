@@ -7,17 +7,8 @@
 #include "Stocks.h"
 using namespace std;
 
-
-
 int main() {
-    string sector;
-    float price;
-
     ifstream stockInfo("Stocks.csv");
-    stockInfo.open ("Stocks.csv");
-
-
-
 
     if (!stockInfo.is_open()) {
         cout << "Error opening file Stocks.csv" << endl;
@@ -25,11 +16,11 @@ int main() {
 
     unordered_map<string, vector<Stock>> stockMap;
 
-    if (stockInfo.is_open()) {
+    if (stockInfo.is_open()) { // ensure file is open
         string fileData;
         getline(stockInfo, fileData);
 
-        while (getline(stockInfo, fileData)) {
+        while (getline(stockInfo, fileData)) { // go through file
             string symbol, name, sector, sec;
             string p,pe,dy,es,wl,wh,mc,eb,ps,pb;
             istringstream stream (fileData);
@@ -62,24 +53,18 @@ int main() {
 
             getline(stream, sec, ',');
 
-            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare, weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
+            // insert stock into object
+            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
+                        weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
 
+            // push the stock into its sector group
             stockMap[sector].push_back(stock);
         }
 
+        float desiredSector;
+        cout << "Enter the Sector you want to invest in: ";
 
-
-        std::cout << "Sector: "<< endl;
-        std:: cin >> sector;
-
-        std::cout << "Price: "<< endl;
-        std:: cin >> price;
-
-//         iterate through map
-//        for (const auto& inputs : stockMap) {
-//            const string& secName = inputs.first;
-//            const vector<Stock>& sectorStocks = inputs.second;
-//        }
+        cin >> desiredSector;
 
     }
 

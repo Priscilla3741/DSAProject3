@@ -31,7 +31,7 @@ struct Stock {
 class Stocks {
 public:
     void insertStocks(unordered_map<string, vector<Stock>> &stockMap);
-
+    void bubblePrice(unordered_map<string, vector<Stock>> &stockMap, int maxPrice);
 };
 
 

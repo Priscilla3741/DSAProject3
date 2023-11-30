@@ -53,3 +53,7 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
         }
     }
 }
+
+void Stocks::bubblePrice(unordered_map<string, vector<Stock>> &stockMap, int maxPrice) {
+
+}

@@ -2,7 +2,7 @@
 #include "Stocks.h"
 using namespace std;
 
-// using quick sort - the pivot is the max and once sorted print everything under the max
+// using bubble sort - bubble prices from descending to ascending order
 // using heap sort - build min heap and pop out minimum values until it gets to the max
 
 int main() {

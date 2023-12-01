@@ -6,7 +6,7 @@ using namespace std;
 // using heap sort - build min heap and pop out minimum values until it gets to the max
 
 int main() {
-    unordered_map<string, vector<Stock>> stockMap;
+    unordered_map<string, vector<StockInfo>> stockMap;
     Stocks stock;
     stock.insertStocks(stockMap);
 
@@ -40,16 +40,26 @@ int main() {
         cin >> desiredSector;
     }
 
-    int choice;
+    vector<StockInfo>& sectorStocks = stockMap[desiredSector];
+
     string algorithmChoice;
-    cout << "Enter the number for the category you want to search: ";
-    cout << "1. Price" << endl;
-    cin >> choice;
     cout << "What algorithm do you want to use?" << endl;
     cout << " - Quick Sort" << endl;
     cout << " - Heap Sort" << endl;
     cin >> algorithmChoice;
-    // sort the industry's sector with that algorithm
+
+    if (algorithmChoice == "Quick Sort") {
+        stock.quickSort(sectorStocks, 0, sectorStocks.size() - 1);
+    }
+    else {
+        cout << "Invalid Algorithm entered. Please choose a valid algorithm: " << endl;
+        cin >> algorithmChoice;
+    }
+
+    int choice;
+    cout << "Enter the number for the category you want to search: ";
+    cout << "1. Price" << endl;
+    cin >> choice;
 
     switch (choice) {
         case 1:
@@ -60,4 +70,3 @@ int main() {
     }
     return 0;
 }
-

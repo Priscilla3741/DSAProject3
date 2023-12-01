@@ -8,7 +8,7 @@
 #include <unordered_map>
 using namespace std;
 
-struct Stock {
+struct StockInfo {
     string symbol;
     string name;
     string sector;
@@ -23,15 +23,20 @@ struct Stock {
     float pricePerSale;
     float pricePerBook;
 
-    Stock(const string& sym, const string& n, const string& sec, float p, float pe, float dy, float es, float wl, float wh, float mc, float eb, float ps, float pb)
+    StockInfo(const string& sym, const string& n, const string& sec, float p, float pe, float dy, float es, float wl, float wh, float mc, float eb, float ps, float pb)
             : symbol(sym), name(n), sector(sec), price(p), pricePerEarnings(pe), dividendYield(dy), earningsPerShare(es),
               weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
+
+    float getPrice() {
+        return price;
+    }
 };
 
 class Stocks {
 public:
-    void insertStocks(unordered_map<string, vector<Stock>> &stockMap);
-    void bubblePrice(unordered_map<string, vector<Stock>> &stockMap, int maxPrice);
+    void insertStocks(unordered_map<string, vector<StockInfo>> &stockMap);
+    void quickSort(vector<StockInfo>& stocks, int start, int end);
+    int partition(vector<StockInfo>& stocks, int start, int end);
 };
 
 

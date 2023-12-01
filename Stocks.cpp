@@ -1,6 +1,6 @@
 #include "Stocks.h"
 
-void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
+void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
 
     if (!stockInfo.is_open()) {
@@ -45,7 +45,7 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
             getline(stream, sec, ',');
 
             // insert stock into object
-            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
+            StockInfo stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
                         weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
 
             // push the stock into its sector group
@@ -54,6 +54,50 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
     }
 }
 
-void Stocks::bubblePrice(unordered_map<string, vector<Stock>> &stockMap, int maxPrice) {
-
+void Stocks::quickSort(vector<StockInfo> &stocks, int start, int end) {
+    if (start < end) {
+        int partitionIndex = partition(stocks, start, end);
+        quickSort(stocks, start, partitionIndex - 1);
+        quickSort(stocks, partitionIndex + 1, end);
+    }
 }
+
+int Stocks::partition(vector<StockInfo>& stocks, int start, int end) {
+    int index = 0;
+    float pivotElement = stocks[end].getPrice();
+    int pivotIndex = start;
+    float* temp = new float[end - start + 1];
+
+    for (int i = start; i <= end; i++) {
+        if (stocks[i].getPrice() < pivotElement) {
+            temp[index] = stocks[i].getPrice();
+            index++;
+        }
+    }
+
+    pivotIndex = start + index - 1;
+    temp[index] = pivotElement;
+    index++;
+
+    for (int i = start; i < end; i++) {
+        if (stocks[i].getPrice() > pivotElement) {
+            temp[index] = stocks[i].getPrice();
+            index++;
+        }
+    }
+    index = 0;
+    for (int i = start; i <= end; i++) {
+        if (i == pivotIndex) {
+            stocks[i].price = temp[index];
+        }
+        else {
+            stocks[i].price = temp[index];
+        }
+        index++;
+    }
+    return pivotIndex;
+}
+
+
+
+

@@ -63,7 +63,8 @@ int main() {
         stock.quickSort(sectorStocks, 0, sectorStocks.size() - 1);
     }
     else if (algorithmChoice == 2) {
-        // heap sort
+        int n = sizeof(sectorStocks)/sizeof(sectorStocks[0].getPrice());
+        stock.heapSort(sectorStocks, n);
     }
     else {
         cout << "Invalid algorithm entered. Please choose a valid algorithm: " << endl;

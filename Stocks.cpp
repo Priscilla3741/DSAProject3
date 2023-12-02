@@ -1,4 +1,6 @@
 #include "Stocks.h"
+#include <algorithm>
+#pragma once
 
 void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
@@ -96,6 +98,36 @@ int Stocks::partition(vector<StockInfo>& stocks, int start, int end) {
         index++;
     }
     return pivotIndex;
+}
+
+void Stocks::heapify(vector<StockInfo>& stocks, int n, int i) {
+    int largest = i;
+    int left = 2*i +1;
+    int right = 2*i +2;
+
+    if (left < n && stocks[left].getPrice() > stocks[largest].getPrice())
+        largest = left;
+
+    if (right < n && stocks[right].getPrice() > stocks[largest].getPrice())
+        largest = right;
+
+    if (largest != i) {
+        swap(stocks[i], stocks[largest]);
+        heapify(stocks, n, largest);
+    }
+}
+
+void Stocks::heapSort(vector<StockInfo> &stocks, int n) {
+
+    for (int i = n/2-1; i >= 0; i--) {
+        heapify(stocks, n, i);
+    }
+
+    for (int i = n-1; i >=0; i--) {
+        swap(stocks[0], stocks[i]);
+        heapify(stocks, i, 0);
+
+    }
 }
 
 

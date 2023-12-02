@@ -30,6 +30,9 @@ struct StockInfo {
     float getPrice() {
         return price;
     }
+    string getName() {
+        return name;
+    }
 };
 
 class Stocks {

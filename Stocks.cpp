@@ -1,6 +1,10 @@
-#include "Stocks.h"
 
-void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
+#include "Stocks.h"
+#include <iostream>
+#include <algorithm>
+
+
+void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
 
     if (!stockInfo.is_open()) {
@@ -45,8 +49,8 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
             getline(stream, sec, ',');
 
             // insert stock into object
-            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
-                        weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
+            StockInfo stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
+                            weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
 
             // push the stock into its sector group
             stockMap[sector].push_back(stock);
@@ -54,6 +58,82 @@ void Stocks::insertStocks(unordered_map<string, vector<Stock>> &stockMap) {
     }
 }
 
-void Stocks::bubblePrice(unordered_map<string, vector<Stock>> &stockMap, int maxPrice) {
-
+void Stocks::quickSort(vector<StockInfo> &stocks, int start, int end) {
+    if (start < end) {
+        int partitionIndex = partition(stocks, start, end);
+        quickSort(stocks, start, partitionIndex - 1);
+        quickSort(stocks, partitionIndex + 1, end);
+    }
 }
+
+int Stocks::partition(vector<StockInfo>& stocks, int start, int end) {
+    int index = 0;
+    float pivotElement = stocks[end].getPrice();
+    int pivotIndex = start;
+    float* temp = new float[end - start + 1];
+
+    for (int i = start; i <= end; i++) {
+        if (stocks[i].getPrice() < pivotElement) {
+            temp[index] = stocks[i].getPrice();
+            index++;
+        }
+    }
+
+    pivotIndex = start + index - 1;
+    temp[index] = pivotElement;
+    index++;
+
+    for (int i = start; i < end; i++) {
+        if (stocks[i].getPrice() > pivotElement) {
+            temp[index] = stocks[i].getPrice();
+            index++;
+        }
+    }
+    index = 0;
+    for (int i = start; i <= end; i++) {
+        if (i == pivotIndex) {
+            stocks[i].price = temp[index];
+        }
+        else {
+            stocks[i].price = temp[index];
+        }
+        index++;
+    }
+    return pivotIndex;
+}
+
+void Stocks::heapSort(vector<StockInfo> &stocks, int n) {
+
+    for (int i = n/2-1; i >= 0; i--) {
+        heapify(stocks, n, i);
+    }
+
+    for (int i = n-1; i >=0; i--) {
+        //swap(stocks[0].getPrice(), stocks[i].getPrice());
+        heapify(stocks, i, 0);
+
+    }
+}
+
+void Stocks::heapify(vector<StockInfo>& stocks, int n, int i) {
+    int largest = i;
+    int left = 2*i +1;
+    int right = 2*i +2;
+
+    if (left < n && stocks[left].getPrice() > stocks[largest].getPrice())
+        largest = left;
+
+    if (right < n && stocks[right].getPrice() > stocks[largest].getPrice())
+        largest = right;
+
+    if (largest != i) {
+        //swap(arr[i], arr[largest]);
+        heapify(stocks, n, largest);
+    }
+}
+
+
+
+
+
+

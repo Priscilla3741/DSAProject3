@@ -1,8 +1,4 @@
-
 #include "Stocks.h"
-#include <iostream>
-#include <algorithm>
-
 
 void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
@@ -50,7 +46,7 @@ void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
 
             // insert stock into object
             StockInfo stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
-                            weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
+                        weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
 
             // push the stock into its sector group
             stockMap[sector].push_back(stock);
@@ -101,38 +97,6 @@ int Stocks::partition(vector<StockInfo>& stocks, int start, int end) {
     }
     return pivotIndex;
 }
-
-void Stocks::heapSort(vector<StockInfo> &stocks, int n) {
-
-    for (int i = n/2-1; i >= 0; i--) {
-        heapify(stocks, n, i);
-    }
-
-    for (int i = n-1; i >=0; i--) {
-        //swap(stocks[0].getPrice(), stocks[i].getPrice());
-        heapify(stocks, i, 0);
-
-    }
-}
-
-void Stocks::heapify(vector<StockInfo>& stocks, int n, int i) {
-    int largest = i;
-    int left = 2*i +1;
-    int right = 2*i +2;
-
-    if (left < n && stocks[left].getPrice() > stocks[largest].getPrice())
-        largest = left;
-
-    if (right < n && stocks[right].getPrice() > stocks[largest].getPrice())
-        largest = right;
-
-    if (largest != i) {
-        //swap(arr[i], arr[largest]);
-        heapify(stocks, n, largest);
-    }
-}
-
-
 
 
 

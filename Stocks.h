@@ -1,10 +1,8 @@
 #ifndef DSAPROJECT3_STOCKS_H
 #define DSAPROJECT3_STOCKS_H
 #include <iostream>
-#include <algorithm>
 #include <fstream>
 #include <sstream>
-#pragma once
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -42,9 +40,7 @@ public:
     void insertStocks(unordered_map<string, vector<StockInfo>> &stockMap);
     void quickSort(vector<StockInfo>& stocks, int start, int end);
     int partition(vector<StockInfo>& stocks, int start, int end);
-    void heapSort(vector<StockInfo>& stocks, int n);
-    void heapify(vector<StockInfo>& stocks, int n, int i);
-
 };
+
 
 #endif //DSAPROJECT3_STOCKS_H

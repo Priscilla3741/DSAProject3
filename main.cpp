@@ -63,8 +63,6 @@ int main() {
         stock.quickSort(sectorStocks, 0, sectorStocks.size() - 1);
     }
     else if (algorithmChoice == 2) {
-        int n = sizeof(sectorStocks)/ sizeof(sectorStocks[0]);
-
         // heap sort
     }
     else {

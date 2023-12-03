@@ -68,28 +68,15 @@ void Stocks::quickSort(vector<StockInfo> &stocks, int start, int end) {
 }
 
 int Stocks::partition(vector<StockInfo>& stocks, int start, int end) {
-    int index = 0;
     float pivotElement = stocks[end].getPrice();
     int pivotIndex = start;
 
-    for (int i = start; i <= end; i++) {
-        if (stocks[i].getPrice() < pivotElement) {
-            swap(stocks[i], stocks[pivotIndex]);
-            index++;
-        }
-    }
-
-    pivotIndex = start + index - 1;
-    swap(stocks[pivotIndex], stocks[end]);
-    index++;
-
     for (int i = start; i < end; i++) {
-        if (stocks[i].getPrice() > pivotElement) {
+        if (stocks[i].getPrice() <= pivotElement) {
             swap(stocks[i], stocks[pivotIndex]);
-            index++;
+            pivotIndex++;
         }
     }
-
     swap(stocks[pivotIndex], stocks[end]);
     return pivotIndex;
 }
@@ -141,7 +128,6 @@ int Stocks::partitionDescending(std::vector<StockInfo> &stocks, int start, int e
             pivotIndex++;
         }
     }
-
     swap(stocks[pivotIndex], stocks[end]);
     return pivotIndex;
 }

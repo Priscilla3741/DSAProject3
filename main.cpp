@@ -1,18 +1,17 @@
 #include <iostream>
 #include <chrono>
 #include "Stocks.h"
-#include "HashMap.h"
 using namespace std;
 
 int main() {
-    HashMap<string, vector<struct StockInfo>> stockMap;
+    unordered_map<string, vector<StockInfo>> stockMap;
     Stocks stock;
     stock.insertStocks(stockMap);
 
     // get user's desired sector
     int desiredSector;
     cout << "Sectors: " << endl;
-    cout << " 1. Consumer Discretionary" << endl; //23
+    cout << " 1. Consumer Discretionary" << endl;
     cout << " 2. Consumer Staples" << endl;
     cout << " 3. Energy" << endl;
     cout << " 4. Financials" << endl;

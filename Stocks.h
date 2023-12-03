@@ -27,19 +27,32 @@ struct StockInfo {
             : symbol(sym), name(n), sector(sec), price(p), pricePerEarnings(pe), dividendYield(dy), earningsPerShare(es),
               weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
 
-    float getPrice() {
+    float getPrice() const {
         return price;
     }
-    string getName() {
-        return name;
+    // prints out the stock info
+    void print() const {
+        cout << "Symbol: " << symbol << ", Name: " << name << ", Sector: " << sector << ", Price: " << price
+        << ", Price/Earnings: " << pricePerEarnings << ", Dividend Yield: " << dividendYield
+        << ", Earnings/Share: " << earningsPerShare << ", 52 Week Low: " << weekLow52
+        << ", 52 Week High: " << weekHigh52 << ", Market Cap: " << marketCap
+        << ", EBITDA: " << ebitda << ", Price/Sale: " << pricePerSale << ", Price/Book: " << pricePerBook << endl;
+        cout << endl;
+
     }
 };
 
 class Stocks {
 public:
-    void insertStocks(unordered_map<string, vector<StockInfo>> &stockMap);
+    static void insertStocks(unordered_map<string, vector<StockInfo> > &stockMap);
     void quickSort(vector<StockInfo>& stocks, int start, int end);
-    int partition(vector<StockInfo>& stocks, int start, int end);
+    static int partition(vector<StockInfo>& stocks, int start, int end);
+    void heapSort(vector<StockInfo>& stocks, int n);
+    void heapifyAscending(vector<StockInfo>& stocks, int n, int i);
+    void quickSortDescending(vector<StockInfo> &stocks, int start, int end);
+    static int partitionDescending(vector<StockInfo> &stocks, int start, int end);
+    void heapSortDescending(vector<StockInfo> &stocks, int n);
+    void heapifyDescending(vector<StockInfo>& stocks, int n, int i);
 };
 
 

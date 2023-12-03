@@ -1,102 +1,186 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <string>
-#include <unordered_map>
 #include "Stocks.h"
 using namespace std;
 
 int main() {
-    ifstream stockInfo("Stocks.csv");
+    unordered_map<string, vector<StockInfo> > stockMap;
+    Stocks stock;
+    stock.insertStocks(stockMap);
 
-    if (!stockInfo.is_open()) {
-        cout << "Error opening file Stocks.csv" << endl;
+    // get user's desired sector
+    int desiredSector;
+    cout << "Sectors: " << endl;
+    cout << " 1. Consumer Discretionary" << endl;
+    cout << " 2. Consumer Staples" << endl;
+    cout << " 3. Energy" << endl;
+    cout << " 4. Financials" << endl;
+    cout << " 5. Health Care" << endl;
+    cout << " 6. Industrials" << endl;
+    cout << " 7. Information Technology" << endl;
+    cout << " 8. Materials" << endl;
+    cout << " 9. Real Estate" << endl;
+    cout << " 10. Telecommunication Services" << endl;
+    cout << " 11. Utilities" << endl;
+    cout << "Enter the number of the sector you want to invest in: ";
+
+    cin >> desiredSector;
+
+    if (desiredSector > 11 || desiredSector < 1) {
+        cout << "Invalid sector entered. Please choose a valid sector: " << endl;
+        cin >> desiredSector;
     }
 
-    unordered_map<string, vector<Stock>> stockMap;
+    string sector;
+    if (desiredSector == 1) { sector = "Consumer Discretionary"; }
+    if (desiredSector == 2) { sector = "Consumer Staples"; }
+    if (desiredSector == 3) { sector = "Energy"; }
+    if (desiredSector == 4) { sector = "Financials"; }
+    if (desiredSector == 5) { sector = "Health Care"; }
+    if (desiredSector == 6) { sector = "Industrials"; }
+    if (desiredSector == 7) { sector = "Information Technology"; }
+    if (desiredSector == 8) { sector = "Materials"; }
+    if (desiredSector == 9) { sector = "Real Estate"; }
+    if (desiredSector == 10) { sector = "Telecommunication Services"; }
+    if (desiredSector == 11) { sector = "Utilities"; }
 
-    if (stockInfo.is_open()) { // ensure file is open
-        string fileData;
-        getline(stockInfo, fileData);
+    vector<StockInfo>& sectorStocks = stockMap[sector];
 
-        while (getline(stockInfo, fileData)) { // go through file
-            string symbol, name, sector, sec;
-            string p,pe,dy,es,wl,wh,mc,eb,ps,pb;
-            istringstream stream (fileData);
+    // get user's desired price range
+    float minPrice;
+    cout << "What is the minimum amount you want to invest in?" << endl;
+    cin >> minPrice;
 
-            getline(stream, symbol, ',');
-            getline(stream, name, ',');
-            getline(stream, sector, ',');
+    float maxPrice;
+    cout << "What is the maximum amount you want to invest in?" << endl;
+    cin >> maxPrice;
 
-            getline(stream, p, ',');
-            getline(stream, pe, ',');
-            getline(stream, dy,',');
-            getline(stream, es,',');
-            getline(stream, wl,',');
-            getline(stream, wh,',');
-            getline(stream, mc,',');
-            getline(stream, eb,',');
-            getline(stream, ps,',');
-            getline(stream, pb,',');
 
-            float price = stof(p);
-            float pricePerEarnings = stof(pe);
-            float dividendYield = stof(dy);
-            float earningsPerShare = stof(es);
-            float weekLow52 = stof(wl);
-            float weekHigh52 = stof(wh);
-            float marketCap = stof(mc);
-            float ebitda = stof(eb);
-            float pricePerSale = stof(ps);
-            float pricePerBook = stof(pb);
+    int algorithmChoice;
+    cout << "What algorithm do you want to use?" << endl;
+    cout << "1. Quick Sort | Ascending" << endl;
+    cout << "2. Heap Sort | Ascending" << endl;
+    cout << "3. Quick Sort | Descending" << endl;
+    cout << "4. Quick Sort | Descending" << endl;
+    cin >> algorithmChoice;
 
-            getline(stream, sec, ',');
+    bool continueSorting = true;
 
-            // insert stock into object
-            Stock stock(symbol, name, sector, price, pricePerEarnings, dividendYield, earningsPerShare,
-                        weekLow52, weekHigh52, marketCap, ebitda, pricePerSale, pricePerBook);
+    // continues sorting if user would like to test different algorithms
+    while (continueSorting) {
+        auto startTime = std::chrono::high_resolution_clock::now();
 
-            // push the stock into its sector group
-            stockMap[sector].push_back(stock);
+        if (algorithmChoice == 1) {
+            stock.quickSort(sectorStocks, 0, sectorStocks.size() - 1);
+
+            for (StockInfo &stock: sectorStocks) {
+                if (stock.getPrice() >= minPrice && stock.getPrice() <= maxPrice) {
+                    cout << stock.getName() << "(" << stock.getPrice() << ")" << endl;
+                }
+            }
+        } else if (algorithmChoice == 2) {
+            int n = sizeof(sectorStocks) / sizeof(sectorStocks[0].getPrice());
+            stock.heapSort(sectorStocks, n);
+
+            for (StockInfo &stock: sectorStocks) {
+                if (stock.getPrice() >= minPrice && stock.getPrice() <= maxPrice) {
+                    cout << stock.getName() << "(" << stock.getPrice() << ")" << endl;
+                }
+            }
+        } else if (algorithmChoice == 3) {
+            stock.quickSortDescending(sectorStocks, 0, sectorStocks.size() - 1);
+
+            for (StockInfo &stock: sectorStocks) {
+                if (stock.getPrice() >= minPrice && stock.getPrice() <= maxPrice) {
+                    cout << stock.getName() << "(" << stock.getPrice() << ")" << endl;
+                }
+            }
+        } else if (algorithmChoice == 4) {
+            int n = sizeof(sectorStocks) / sizeof(sectorStocks[0].getPrice());
+            stock.heapSortDescending(sectorStocks, n);
+
+            for (StockInfo &stock: sectorStocks) {
+                if (stock.getPrice() >= minPrice && stock.getPrice() <= maxPrice) {
+                    cout << stock.getName() << "(" << stock.getPrice() << ")" << endl;
+                }
+            }
+        } else {
+            cout << "Invalid algorithm entered. Please choose a valid algorithm: " << endl;
+            cin >> algorithmChoice;
         }
 
-        float desiredSector;
-        cout << "Sectors: " << endl;
-        cout << " - Consumer Discretionary" << endl;
-        cout << " - Consumer Staples" << endl;
-        cout << " - Energy" << endl;
-        cout << " - Financials" << endl;
-        cout << " - Health Care" << endl;
-        cout << " - Industrials" << endl;
-        cout << " - Information Technology" << endl;
-        cout << " - Materials" << endl;
-        cout << " - Real Estate" << endl;
-        cout << " - Telecommunication Services" << endl;
-        cout << " - Utilities" << endl;
-        cout << "Enter the Sector you want to invest in: ";
 
-        cin >> desiredSector;
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
+    cout << "Sorting and printing took " << duration.count() << " nanoseconds." << endl;
 
-        // get funcy with it:
-
-        // get the stocks in the sector
-
+        // options after first run
         int choice;
-        cout << "Enter the number for the category you want to search: ";
-        cout << "1. Price" << endl;
+        cout << "Options:";
+        cout << "1. Use another algorithm";
+        cout << "2. Start over with different industry and price range";
+        cout << "3. Exit";
+        cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
             case 1:
-                int maxPrice;
+                cout << "Choose another algorithm: ";
+                cin >> algorithmChoice;
+                break;
+            case 2:
+                // reset industry, price range, and any other relevant variables
+                cout << "Sectors: " << endl;
+                cout << " 1. Consumer Discretionary" << endl;
+                cout << " 2. Consumer Staples" << endl;
+                cout << " 3. Energy" << endl;
+                cout << " 4. Financials" << endl;
+                cout << " 5. Health Care" << endl;
+                cout << " 6. Industrials" << endl;
+                cout << " 7. Information Technology" << endl;
+                cout << " 8. Materials" << endl;
+                cout << " 9. Real Estate" << endl;
+                cout << " 10. Telecommunication Services" << endl;
+                cout << " 11. Utilities" << endl;
+                cout << "Enter the number of the sector you want to invest in: ";
+                cin >> desiredSector;
+
+
+                if (desiredSector > 11 || desiredSector < 1) {
+                    cout << "Invalid sector entered. Please choose a valid sector: " << endl;
+                    cin >> desiredSector;
+                }
+
+                // reset sectorStocks based on the new desired sector
+                if (desiredSector == 1) { sector = "Consumer Discretionary"; }
+                if (desiredSector == 2) { sector = "Consumer Staples"; }
+                if (desiredSector == 3) { sector = "Energy"; }
+                if (desiredSector == 4) { sector = "Financials"; }
+                if (desiredSector == 5) { sector = "Health Care"; }
+                if (desiredSector == 6) { sector = "Industrials"; }
+                if (desiredSector == 7) { sector = "Information Technology"; }
+                if (desiredSector == 8) { sector = "Materials"; }
+                if (desiredSector == 9) { sector = "Real Estate"; }
+                if (desiredSector == 10) { sector = "Telecommunication Services"; }
+                if (desiredSector == 11) { sector = "Utilities"; }
+
+                sectorStocks = stockMap[sector];
+
+                // reset minPrice and maxPrice
+                cout << "What is the minimum amount you want to invest in?" << endl;
+                cin >> minPrice;
+
                 cout << "What is the maximum amount you want to invest in?" << endl;
                 cin >> maxPrice;
-                // with the max price find all the stocks that match are fall under the max price
+
+                break;
+            case 3:
+                continueSorting = false;
+                break;
+            default:
+                cout << "Invalid choice. Exiting.";
+                continueSorting = false;
+                break;
         }
-
-// funcmaster 2000
-
     }
 
     return 0;

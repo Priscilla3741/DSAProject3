@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include "HashMap.h"
+
 using namespace std;
 
 struct StockInfo {
@@ -44,7 +46,7 @@ struct StockInfo {
 
 class Stocks {
 public:
-    static void insertStocks(unordered_map<string, vector<StockInfo> > &stockMap);
+    static void insertStocks(HashMap <string, vector<struct StockInfo>> stockMap);
     void quickSort(vector<StockInfo>& stocks, int start, int end);
     static int partition(vector<StockInfo>& stocks, int start, int end);
     void heapSort(vector<StockInfo>& stocks, int n);

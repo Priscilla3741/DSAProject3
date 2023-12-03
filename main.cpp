@@ -1,10 +1,11 @@
 #include <iostream>
 #include <chrono>
 #include "Stocks.h"
+#include "HashMap.h"
 using namespace std;
 
 int main() {
-    unordered_map<string, vector<StockInfo> > stockMap;
+    HashMap<string, vector<struct StockInfo>> stockMap;
     Stocks stock;
     stock.insertStocks(stockMap);
 
@@ -53,10 +54,10 @@ int main() {
     float minPrice;
     float maxPrice;
     do {
-        cout << " What is the minimum amount you want to invest in?" << endl;
+        cout << "What is the minimum amount you want to invest in?" << endl;
         cin >> minPrice;
 
-        cout << " What is the maximum amount you want to invest in?" << endl;
+        cout << "What is the maximum amount you want to invest in?" << endl;
         cin >> maxPrice;
 
         if (minPrice > maxPrice) {
@@ -124,7 +125,7 @@ int main() {
 
         auto endTime = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-        cout << "Sorting and printing took " << duration.count() << " nanoseconds." << endl;
+        cout << "Sorting and printing took " << duration.count() / 1e-9 << " seconds." << endl;
         cout << endl;
 
         // options after first run
@@ -191,10 +192,10 @@ int main() {
 
                 // reset minPrice and maxPrice
                 do {
-                    cout << " What is the minimum amount you want to invest in?" << endl;
+                    cout << "What is the minimum amount you want to invest in?" << endl;
                     cin >> minPrice;
 
-                    cout << " What is the maximum amount you want to invest in?" << endl;
+                    cout << "What is the maximum amount you want to invest in?" << endl;
                     cin >> maxPrice;
 
                     if (minPrice > maxPrice) {

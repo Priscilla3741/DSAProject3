@@ -38,7 +38,6 @@ struct StockInfo {
         << ", 52 Week High: " << weekHigh52 << ", Market Cap: " << marketCap
         << ", EBITDA: " << ebitda << ", Price/Sale: " << pricePerSale << ", Price/Book: " << pricePerBook << endl;
         cout << endl;
-
     }
 };
 
@@ -54,6 +53,5 @@ public:
     void heapSortDescending(vector<StockInfo> &stocks, int n);
     void heapifyDescending(vector<StockInfo>& stocks, int n, int i);
 };
-
 
 #endif //DSAPROJECT3_STOCKS_H

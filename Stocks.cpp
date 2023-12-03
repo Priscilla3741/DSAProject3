@@ -88,6 +88,7 @@ int Stocks::partition(vector<StockInfo>& stocks, int start, int end) {
             index++;
         }
     }
+
     swap(stocks[pivotIndex], stocks[end]);
     return pivotIndex;
 }
@@ -117,7 +118,6 @@ void Stocks::heapSort(vector<StockInfo> &stocks, int n) {
     for (int i = n - 1; i >=0; i--) {
         swap(stocks[0], stocks[i]);
         heapifyAscending(stocks, i, 0);
-
     }
 }
 

@@ -27,6 +27,10 @@ struct StockInfo {
             : symbol(sym), name(n), sector(sec), price(p), pricePerEarnings(pe), dividendYield(dy), earningsPerShare(es),
               weekLow52(wl), weekHigh52(wh), marketCap(mc), ebitda(eb), pricePerSale(ps), pricePerBook(pb) {}
 
+    void setPrice(float newPrice) {
+        price = newPrice;
+    }
+
     float getPrice() {
         return price;
     }
@@ -37,11 +41,14 @@ struct StockInfo {
 
 class Stocks {
 public:
-    void insertStocks(unordered_map<string, vector<StockInfo>> &stockMap);
+    void insertStocks(unordered_map<string, vector<StockInfo> > &stockMap);
     void quickSort(vector<StockInfo>& stocks, int start, int end);
     int partition(vector<StockInfo>& stocks, int start, int end);
     void heapSort(vector<StockInfo>& stocks, int n);
     void heapify(vector<StockInfo>& stocks, int n, int i);
+    void quickSortDescending(vector<StockInfo> &stocks, int start, int end);
+    int partitionDescending(vector<StockInfo> &stocks, int start, int end);
+    void heapSortDescending(vector<StockInfo> &stocks, int n);
 };
 
 

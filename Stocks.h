@@ -30,6 +30,7 @@ struct StockInfo {
     float getPrice() const {
         return price;
     }
+
     // prints out the stock info
     void print() const {
         cout << "Symbol: " << symbol << ", Name: " << name << ", Sector: " << sector << ", Price: " << price

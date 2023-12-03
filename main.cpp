@@ -120,9 +120,6 @@ int main() {
                     stockInSectors.print();
                 }
             }
-        } else {
-            cout << "Invalid algorithm entered. Please enter a value between 1 and 11: " << endl;
-            cin >> algorithmChoice;
         }
 
         auto endTime = std::chrono::high_resolution_clock::now();

@@ -173,3 +173,4 @@ void Stocks::heapSortDescending(std::vector<StockInfo> &stocks, int n) {
         heapifyDescending(stocks, i, 0);
     }
 }
+

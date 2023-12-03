@@ -2,6 +2,7 @@
 #include <algorithm>
 #pragma once
 
+// reads in files
 void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
 

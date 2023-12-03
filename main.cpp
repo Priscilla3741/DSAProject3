@@ -65,7 +65,7 @@ int main() {
 
     bool continueSorting = true;
 
-    // continues sorting if user would like to test different algorithms
+    // continues sorting if user would like to continue testing different algorithms
     while (continueSorting) {
         auto startTime = std::chrono::high_resolution_clock::now();
 

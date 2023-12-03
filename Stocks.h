@@ -46,7 +46,7 @@ struct StockInfo {
 
 class Stocks {
 public:
-    static void insertStocks(HashMap <string, vector<struct StockInfo>> stockMap);
+    void insertStocks(std::unordered_map<string, vector<StockInfo>> &stockMap);
     void quickSort(vector<StockInfo>& stocks, int start, int end);
     static int partition(vector<StockInfo>& stocks, int start, int end);
     void heapSort(vector<StockInfo>& stocks, int n);
@@ -55,6 +55,7 @@ public:
     static int partitionDescending(vector<StockInfo> &stocks, int start, int end);
     void heapSortDescending(vector<StockInfo> &stocks, int n);
     void heapifyDescending(vector<StockInfo>& stocks, int n, int i);
+
 };
 
 #endif //DSAPROJECT3_STOCKS_H

@@ -1,9 +1,10 @@
 #include "Stocks.h"
 #include <algorithm>
+#include <unordered_map>
 #pragma once
 
 // reads in files
-void Stocks::insertStocks(HashMap<string, vector<struct StockInfo>> stockMap) {
+void Stocks::insertStocks(unordered_map<string, vector<StockInfo>> &stockMap) {
     ifstream stockInfo("Stocks.csv");
 
     if (!stockInfo.is_open()) {

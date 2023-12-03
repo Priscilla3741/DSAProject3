@@ -12,7 +12,7 @@ int main() {
     // get user's desired sector
     int desiredSector;
     cout << "Sectors: " << endl;
-    cout << " 1. Consumer Discretionary" << endl;
+    cout << " 1. Consumer Discretionary" << endl; //23
     cout << " 2. Consumer Staples" << endl;
     cout << " 3. Energy" << endl;
     cout << " 4. Financials" << endl;

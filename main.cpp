@@ -202,7 +202,6 @@ int main() {
                     }
                 }
                 while (minPrice > maxPrice || maxPrice < minPrice);
-
                 break;
             case 3:
                 continueSorting = false;
